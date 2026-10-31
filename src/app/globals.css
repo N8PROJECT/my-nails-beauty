@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme static {
+  --color-burgundy: #842f40;
+  --color-burgundy-dark: #672433;
+  --color-dusty-rose: #c98287;
+  --color-blush: #f4dfdc;
+  --color-ivory: #fff9f6;
+  --color-charcoal: #382c2c;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
+  /* Height of the compact (scrolled) navbar, used for anchor offsets. */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --navbar-height: 4rem;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @media (min-width: 1024px) {
+    :root {
+      --navbar-height: 5rem;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height);
+    color-scheme: light;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.1;
+  }
 }
